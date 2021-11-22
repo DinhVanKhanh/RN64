@@ -206,14 +206,6 @@ class App extends Component {
             //     keyExtractor={item => `${item.id}`}
             //     contentContainerStyle={{paddingLeft: 16, paddingRight: 16}}
             //   /> */}
-            //   <TextInput
-            //     style={styles.textInput}
-            //     placeholder="Your name"
-            //     maxLength={20}
-            //     onBlur={Keyboard.dismiss}
-            //     value={this.state.name}
-            //     onChangeText={this.handleNameChange.bind(this)}
-            //   />
             // </View>
             <Input />
             // </ScrollView>
