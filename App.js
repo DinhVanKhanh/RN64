@@ -129,117 +129,144 @@
 
 import React, {Component, useState} from 'react';
 import {
-  Text,
-  View,
-  Image,
-  StyleSheet,
-  ScrollView,
-  FlatList,
-  RefreshControl,
+    Text,
+    View,
+    Image,
+    StyleSheet,
+    ScrollView,
+    FlatList,
+    RefreshControl,
+    TextInput,
+    Keyboard,
 } from 'react-native';
 import Button from './layouts/Button'; // Import a component from another file
 import CategoryListItem from './components/CategoryListItem'; // Import a component from another file
 import ImgAnket from './assets/girl.png';
 import axios from 'axios';
+import Input from './Input';
 class App extends Component {
-  // const App = () => {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: [
-        {id: 1, name: '1a'},
-        {id: 2, name: '2b'},
-        {id: 3, name: '3c'},
-      ],
-      refreshing: false,
-      page: 1,
-    };
-  }
-
-  LoadData = async () => {
-    try {
-      const response = await axios.get(
-        'http://192.168.90.49:8383/Contain/test/json/?trang=1',
-      );
-      //   alert(response.data);
-      // console.log(response.data.categories);
-      let categoriesPage = this.state.categories.concat(
-        response.data.categories,
-      );
-      this.setState({
-        categories: categoriesPage,
-        page: this.state.page + 1,
-        refreshing: false,
-      });
-    } catch (error) {
-      // handle error
-      console.log(error.message);
+    // const App = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: [
+                {id: 1, name: '1a'},
+                {id: 2, name: '2b'},
+                {id: 3, name: '3c'},
+            ],
+            refreshing: false,
+            page: 1,
+            name: 'ten',
+        };
     }
-  };
 
-  render() {
-    const {categories} = this.state;
-    // return <Button color="red" />;
-    return (
-      // <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      /* {categories.map(category => (
-                    <CategoryListItem key={category.id} category = {category}></CategoryListItem>
-                ))} */
+    handleNameChange(name) {
+        this.setState({name});
+    }
 
-      <FlatList
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this.LoadData.bind(this)}
-          />
+    LoadData = async () => {
+        try {
+            const response = await axios.get(
+                'http://192.168.90.49:8383/Contain/test/json/?trang=' + page,
+            );
+            //   alert(response.data);
+            // console.log(response.data.categories);
+            let categoriesPage = this.state.categories.concat(
+                response.data.categories,
+            );
+            this.setState({
+                categories: categoriesPage,
+                page: this.state.page + 1,
+                refreshing: false,
+            });
+        } catch (error) {
+            // handle error
+            console.log(error.message);
         }
-        data={categories}
-        renderItem={({item}) => <CategoryListItem category={item} />}
-        keyExtractor={item => `${item.id}`}
-        contentContainerStyle={{paddingLeft: 16, paddingRight: 16}}
-      />
-      // </ScrollView>
-    );
-  }
+    };
 
-  // async componentDidMount() {
-  //   try {
-  //     const response = await axios.get(
-  //       'http://192.168.90.49:8383/Contain/test/json/?trang=0',
-  //     );
-  //     //   alert(response.data);
-  //     console.log(response.data.categories);
-  //     this.setState({
-  //       categories: response.data.categories,
-  //     });
-  //   } catch (error) {
-  //     // handle error
-  //     alert(error.message);
-  //   }
-  // }
+    render() {
+        const {categories} = this.state;
+        // return <Button color="red" />;
+        return (
+            // <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            /* {categories.map(category => (
+			<CategoryListItem key={category.id} category = {category}></CategoryListItem>
+			))} */
+            // <View>
+            //   {/* <FlatList
+            //     refreshControl={
+            //       <RefreshControl
+            //         refreshing={this.state.refreshing}
+            //         onRefresh={this.LoadData.bind(this)}
+            //       />
+            //     }
+            //     data={categories}
+            //     renderItem={({item}) => <CategoryListItem category={item} />}
+            //     keyExtractor={item => `${item.id}`}
+            //     contentContainerStyle={{paddingLeft: 16, paddingRight: 16}}
+            //   /> */}
+            //   <TextInput
+            //     style={styles.textInput}
+            //     placeholder="Your name"
+            //     maxLength={20}
+            //     onBlur={Keyboard.dismiss}
+            //     value={this.state.name}
+            //     onChangeText={this.handleNameChange.bind(this)}
+            //   />
+            // </View>
+            <Input />
+            // </ScrollView>
+        );
+    }
+
+    // async componentDidMount() {
+    //   try {
+    //     const response = await axios.get(
+    //       'http://192.168.90.49:8383/Contain/test/json/?trang=0',
+    //     );
+    //     //   alert(response.data);
+    //     console.log(response.data.categories);
+    //     this.setState({
+    //       categories: response.data.categories,
+    //     });
+    //   } catch (error) {
+    //     // handle error
+    //     alert(error.message);
+    //   }
+    // }
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  img: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
+    sectionContainer: {
+        marginTop: 32,
+        paddingHorizontal: 24,
+    },
+    sectionTitle: {
+        fontSize: 24,
+        fontWeight: '600',
+    },
+    sectionDescription: {
+        marginTop: 8,
+        fontSize: 18,
+        fontWeight: '400',
+    },
+    highlight: {
+        fontWeight: '700',
+    },
+    img: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    textInput: {
+        borderColor: '#CCCCCC',
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        height: 50,
+        fontSize: 25,
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
 });
 export default App;
