@@ -144,6 +144,10 @@ import CategoryListItem from './components/CategoryListItem'; // Import a compon
 import ImgAnket from './assets/girl.png';
 import axios from 'axios';
 import Input from './Input';
+import {Auth} from './src/components/Auth/Auth.js';
+import {ChangeInfo} from './src/components/ChangeInfo/ChangeInfo.js';
+import {History} from './src/components/History/History.js';
+import Main from './src/components/Main/Main';
 class App extends Component {
     // const App = () => {
     constructor(props) {
@@ -207,7 +211,8 @@ class App extends Component {
             //     contentContainerStyle={{paddingLeft: 16, paddingRight: 16}}
             //   /> */}
             // </View>
-            <Input />
+            // <Input />
+            <Main />
             // </ScrollView>
         );
     }

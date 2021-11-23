@@ -5,12 +5,15 @@ import {
     TouchableOpacity,
     TextInput,
     StyleSheet,
+    StatusBar,
 } from 'react-native';
 // import AsyncStorage from '@react-native-community/async-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {NavigationContainer} from '@react-navigation/native';
 
 import axios from 'axios';
 
+StatusBar.setHidden(true);
 class Inputs extends Component {
     constructor(props) {
         super(props);
