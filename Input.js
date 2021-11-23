@@ -161,4 +161,8 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
     },
+    submitButtonText1: {
+        color: 'white',
+        textAlign: 'center',
+    },
 });
